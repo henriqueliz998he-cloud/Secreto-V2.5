@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta
+        name="theme-color"
+        content="#000000"
+    >
+
+    <link
+        rel="manifest"
+        href="./manifest.json"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
+
+    <title>Bem vindos !!</title>
+</head>
+
+<body>
+
+    <section
+        id="telaSenha"
+        class="tela tela-senha"
+    >
+
+        <div class="caixa-senha">
+
+            <h1>🔒 Acesso</h1>
+
+            <input
+                type="password"
+                id="campoSenha"
+                placeholder="Digite a senha"
+                autocomplete="off"
+            >
+
+            <button
+                id="botaoEntrar"
+                type="button"
+                onclick="entrar()"
+            >
+                Entrar
+            </button>
+
+            <p id="mensagemSenha"></p>
+
+        </div>
+
+    </section>
+
+
+    <section
+        id="telaPrincipal"
+        class="tela"
+    >
+
+        <header class="cabecalho">
+
+            <div>
+
+                <h1>Bem vindos !!</h1>
+
+                <p id="contadorAnotacoes">
+                    0 anotações
+                </p>
+
+            </div>
+
+
+            <div class="acoes-topo">
+
+                <button
+                    id="botaoTema"
+                    class="botao-mini"
+                    type="button"
+                    title="Alterar tema"
+                >
+                    ☀️
+                </button>
+
+
+                <button
+                    id="botaoBloquear"
+                    class="botao-mini"
+                    type="button"
+                    title="Bloquear"
+                >
+                    🔒
+                </button>
+
+
+                <button
+                    id="botaoLixeira"
+                    class="botao-mini"
+                    type="button"
+                    title="Lixeira"
+                >
+                    🗑️
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div class="barra-acoes">
+
+            <button
+                id="botaoAdicionar"
+                type="button"
+            >
+                ＋ Adicionar anotação
+            </button>
+
+
+            <button
+                id="botaoModoVisualizacao"
+                type="button"
+            >
+                👁️ Modo visualização
+            </button>
+
+        </div>
+
+
+        <div class="busca">
+
+            <input
+                type="search"
+                id="campoBusca"
+                placeholder="Pesquisar pelo título..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="filtros">
+
+            <button
+                class="filtro ativo"
+                data-filtro="todas"
+                type="button"
+            >
+                Todas
+            </button>
+
+
+            <button
+                class="filtro"
+                data-filtro="fixadas"
+                type="button"
+            >
+                📌 Fixadas
+            </button>
+
+
+            <button
+                class="filtro"
+                data-filtro="recentes"
+                type="button"
+            >
+                🕐 Recentes
+            </button>
+
+        </div>
+
+
+        <main
+            id="listaAnotacoes"
+            class="lista-anotacoes"
+        ></main>
+
+    </section>
+
+
+    <section
+        id="telaEditor"
+        class="tela"
+    >
+
+        <header class="cabecalho-tela">
+
+            <h1>Nova anotação</h1>
+
+        </header>
+
+
+        <div class="editor">
+
+            <input
+                type="text"
+                id="campoTitulo"
+                placeholder="Título"
+                maxlength="100"
+                autocomplete="off"
+            >
+
+
+            <textarea
+                id="campoConteudo"
+                placeholder="Escreva sua anotação..."
+            ></textarea>
+
+
+            <div class="acoes-editor">
+
+                <button
+                    id="botaoSalvar"
+                    type="button"
+                >
+                    Salvar
+                </button>
+
+
+                <button
+                    id="botaoCancelar"
+                    type="button"
+                >
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section
+        id="telaAnotacao"
+        class="tela"
+    >
+
+        <div class="topo-anotacao">
+
+            <button
+                id="botaoVoltarAnotacao"
+                class="botao-mini"
+                type="button"
+                title="Voltar"
+            >
+                ←
+            </button>
+
+
+            <div class="acoes-anotacao">
+
+                <button
+                    id="botaoFixar"
+                    class="botao-mini"
+                    type="button"
+                    title="Fixar"
+                >
+                    📌 Fixar
+                </button>
+
+
+                <button
+                    id="botaoCompartilhar"
+                    class="botao-mini"
+                    type="button"
+                    title="Compartilhar"
+                >
+                    📤
+                </button>
+
+
+                <button
+                    id="botaoEditar"
+                    class="botao-mini"
+                    type="button"
+                    title="Editar"
+                >
+                    ✏️
+                </button>
+
+
+                <button
+                    id="botaoExcluir"
+                    class="botao-mini"
+                    type="button"
+                    title="Excluir"
+                >
+                    🗑️
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <article class="conteudo-anotacao">
+
+            <h1 id="tituloAnotacao"></h1>
+
+
+            <p
+                id="dataAnotacao"
+                class="data-anotacao"
+            ></p>
+
+
+            <div
+                id="conteudoAnotacao"
+                class="texto-anotacao"
+            ></div>
+
+        </article>
+
+    </section>
+
+
+    <section
+        id="telaLixeira"
+        class="tela"
+    >
+
+        <header class="cabecalho-tela">
+
+            <button
+                id="botaoVoltarLixeira"
+                class="botao-mini"
+                type="button"
+                title="Voltar"
+            >
+                ←
+            </button>
+
+
+            <h1>🗑️ Lixeira</h1>
+
+        </header>
+
+
+        <main
+            id="listaLixeira"
+            class="lista-lixeira"
+        ></main>
+
+    </section>
+
+
+    <button
+        id="botaoSairVisualizacao"
+        class="botao-sair-visualizacao"
+        type="button"
+    >
+        🔓 Sair do modo visualização
+    </button>
+
+
+    <script src="./script.js"></script>
+
+
+    <script>
+
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener(
+                "load",
+                function () {
+
+                    navigator.serviceWorker.register(
+                        "./service-worker.js"
+                    );
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+  </html>
