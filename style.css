@@ -1,0 +1,379 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: background 0.2s, color 0.2s;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.tela {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+#telaSenha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.caixa-senha {
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+.caixa-senha h1 {
+    margin-bottom: 25px;
+}
+
+input,
+textarea {
+    width: 100%;
+    border: 1px solid #444;
+    border-radius: 10px;
+    background: #111;
+    color: #fff;
+    padding: 14px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: red;
+}
+
+textarea {
+    min-height: 220px;
+    resize: vertical;
+}
+
+.caixa-senha button,
+.barra-acoes button,
+.acoes-editor button {
+    border: none;
+    border-radius: 10px;
+    background: red;
+    color: #fff;
+    padding: 13px 18px;
+    font-weight: bold;
+}
+
+.caixa-senha button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.caixa-senha p {
+    min-height: 20px;
+    color: #ff5555;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.cabecalho p {
+    margin: 5px 0 0;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.acoes-topo {
+    display: flex;
+    gap: 6px;
+}
+
+.botao-mini {
+    border: none;
+    border-radius: 8px;
+    background: red;
+    color: #fff;
+    padding: 7px 9px;
+    font-size: 14px;
+}
+
+.barra-acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.barra-acoes button {
+    width: 100%;
+}
+
+.busca {
+    margin-bottom: 12px;
+}
+
+.filtros {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 15px;
+    overflow-x: auto;
+}
+
+.filtros button {
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    padding: 8px 12px;
+    white-space: nowrap;
+}
+
+.filtros button.ativo {
+    background: red;
+    border-color: red;
+}
+
+.lista-anotacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.item-anotacao {
+    width: 100%;
+    border: 1px solid #333;
+    border-radius: 10px;
+    background: #111;
+    color: #fff;
+    padding: 14px;
+    text-align: left;
+}
+
+.item-anotacao:active {
+    transform: scale(0.99);
+}
+
+.item-anotacao-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.indicador-fixada {
+    flex-shrink: 0;
+}
+
+.lista-vazia {
+    padding: 30px 10px;
+    text-align: center;
+    color: #888;
+}
+
+.cabecalho-tela {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.cabecalho-tela h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.acoes-editor {
+    display: flex;
+    gap: 8px;
+}
+
+.acoes-editor button {
+    flex: 1;
+}
+
+.acoes-editor button:last-child {
+    background: #333;
+}
+
+.topo-anotacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.acoes-anotacao {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.conteudo-anotacao h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    word-break: break-word;
+}
+
+.data-anotacao {
+    margin: 0 0 20px;
+    color: #888;
+    font-size: 13px;
+}
+
+.texto-anotacao {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    line-height: 1.6;
+    color: #eee;
+}
+
+.lista-lixeira {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-lixeira {
+    border: 1px solid #333;
+    border-radius: 10px;
+    background: #111;
+    padding: 12px;
+}
+
+.item-lixeira strong {
+    display: block;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.botoes-lixeira {
+    display: flex;
+    gap: 7px;
+}
+
+.botoes-lixeira button {
+    border: none;
+    border-radius: 7px;
+    background: red;
+    color: #fff;
+    padding: 7px 10px;
+}
+
+.botao-sair-visualizacao {
+    display: none;
+    position: fixed;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    z-index: 1000;
+    border: none;
+    border-radius: 10px;
+    background: red;
+    color: #fff;
+    padding: 13px;
+    font-weight: bold;
+}
+
+.modo-visualizacao .botao-sair-visualizacao {
+    display: block;
+}
+
+body.tela-bloqueada .botao-sair-visualizacao {
+    display: none !important;
+}
+
+.modo-visualizacao .barra-acoes button:first-child,
+.modo-visualizacao #botaoLixeira {
+    display: none;
+}
+
+.tema-claro {
+    background: #fff;
+    color: #000;
+}
+
+.tema-claro input,
+.tema-claro textarea {
+    background: #f5f5f5;
+    color: #000;
+    border-color: #ccc;
+}
+
+.tema-claro .filtros button {
+    background: #eee;
+    color: #000;
+    border-color: #ccc;
+}
+
+.tema-claro .item-anotacao,
+.tema-claro .item-lixeira {
+    background: #f5f5f5;
+    color: #000;
+    border-color: #ddd;
+}
+
+.tema-claro .texto-anotacao {
+    color: #111;
+}
+
+.tema-claro .cabecalho p {
+    color: #666;
+}
+
+.tema-claro .filtros button.ativo {
+    background: red;
+    color: #fff;
+    border-color: red;
+}
+
+@media (min-width: 600px) {
+
+    .tela {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .barra-acoes {
+        flex-direction: row;
+    }
+
+    .barra-acoes button {
+        flex: 1;
+    }
+
+}
