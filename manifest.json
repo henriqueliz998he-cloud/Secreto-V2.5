@@ -1,0 +1,10 @@
+{
+    "name": "Aplicativo",
+    "short_name": "App",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "description": "Aplicativo pessoal",
+    "lang": "pt-BR"
+}
