@@ -1,6 +1,4 @@
-const CACHE_NAME =
-    "compartilha-47-offline-v1";
-
+const CACHE_NAME = "compartilha-47-offline-v1";
 
 const ARQUIVOS = [
     "./",
@@ -12,153 +10,118 @@ const ARQUIVOS = [
 ];
 
 
-self.addEventListener(
-    "install",
-    function (evento) {
+// =========================================================
+// INSTALAÇÃO
+// =========================================================
 
-        evento.waitUntil(
+self.addEventListener("install", function (evento) {
 
-            caches.open(
-                CACHE_NAME
-            )
-            .then(
-                function (cache) {
+    evento.waitUntil(
 
-                    return cache.addAll(
-                        ARQUIVOS
-                    );
+        caches.open(CACHE_NAME)
 
-                }
-            )
-            .then(
-                function () {
+            .then(function (cache) {
 
-                    return self.skipWaiting();
+                return cache.addAll(ARQUIVOS);
 
-                }
-            )
+            })
 
-        );
+            .then(function () {
 
-    }
-);
+                return self.skipWaiting();
+
+            })
+
+    );
+
+});
 
 
-self.addEventListener(
-    "activate",
-    function (evento) {
+// =========================================================
+// ATIVAÇÃO
+// =========================================================
 
-        evento.waitUntil(
+self.addEventListener("activate", function (evento) {
 
-            caches.keys()
-                .then(
-                    function (nomes) {
+    evento.waitUntil(
 
-                        return Promise.all(
+        caches.keys()
 
-                            nomes.map(
-                                function (nome) {
+            .then(function (nomesCaches) {
 
-                                    if (
-                                        nome !==
-                                        CACHE_NAME
-                                    ) {
+                return Promise.all(
 
-                                        return caches.delete(
-                                            nome
-                                        );
+                    nomesCaches.map(function (nomeCache) {
 
-                                    }
+                        if (nomeCache !== CACHE_NAME) {
 
-                                    return null;
-
-                                }
-                            )
-
-                        );
-
-                    }
-                )
-                .then(
-                    function () {
-
-                        return self.clients.claim();
-
-                    }
-                )
-
-        );
-
-    }
-);
-
-
-self.addEventListener(
-    "fetch",
-    function (evento) {
-
-        if (
-            evento.request.method !==
-            "GET"
-        ) {
-
-            return;
-
-        }
-
-
-        evento.respondWith(
-
-            caches.match(
-                evento.request,
-                {
-                    ignoreSearch: true
-                }
-            )
-            .then(
-                function (respostaCache) {
-
-                    if (respostaCache) {
-
-                        return respostaCache;
-
-                    }
-
-
-                    return fetch(
-                        evento.request
-                    )
-                    .catch(
-                        function () {
-
-                            if (
-                                evento.request.mode ===
-                                "navigate"
-                            ) {
-
-                                return caches.match(
-                                    "./index.html"
-                                );
-
-                            }
-
-
-                            return new Response(
-                                "",
-                                {
-                                    status: 503,
-                                    statusText:
-                                        "Offline"
-                                }
-                            );
+                            return caches.delete(nomeCache);
 
                         }
-                    );
 
-                }
-            )
+                    })
 
-        );
+                );
+
+            })
+
+            .then(function () {
+
+                return self.clients.claim();
+
+            })
+
+    );
+
+});
+
+
+// =========================================================
+// FUNCIONAMENTO OFFLINE
+// =========================================================
+
+self.addEventListener("fetch", function (evento) {
+
+    if (evento.request.method !== "GET") {
+
+        return;
 
     }
-);
+
+
+    evento.respondWith(
+
+        caches.match(evento.request)
+
+            .then(function (respostaCache) {
+
+                if (respostaCache) {
+
+                    return respostaCache;
+
+                }
+
+
+                return fetch(evento.request)
+
+                    .then(function (respostaRede) {
+
+                        return respostaRede;
+
+                    })
+
+                    .catch(function () {
+
+                        if (evento.request.mode === "navigate") {
+
+                            return caches.match("./offline.html");
+
+                        }
+
+                    });
+
+            })
+
+    );
+
+});
